@@ -4,8 +4,9 @@ Project based on TensorFlow API to locate head of game character and shot it fro
 Let me express my deep gratitude for Sentdex https://github.com/Sentdex for his amazing tutorials https://www.youtube.com/channel/UCfzlCWGWYyIQ0aLC5w48gBQ
 And also my gratitude and best regards for Evgeniy Vesnin (technical director of Mallenom Systems company) for introducing me into the subject of deep neural network  
 
-So, what do you need to run this projec?
+So, what do you need to run this project?
 
 1. Download and install https://www.tensorflow.org/install/
 2. Have GPU with CUDA 9 and install CUDA Toolkit https://developer.nvidia.com/cuda-90-download-archive
 3. Download and install https://github.com/tensorflow/models/tree/master/research/object_detection
+4. Add files to object_detection folder from this repo. You'll need head_detection_gta_v.013.py and grabscreen.py
