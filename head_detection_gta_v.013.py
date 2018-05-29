@@ -142,13 +142,15 @@ with detection_graph.as_default():
            bias_y = int(((boxes[0][i][2])-(boxes[0][i][0]))*720/15)
            apx_distance = round(((1 - (boxes[0][i][3] - boxes[0][i][1]))**4),1)
            ##cv2.putText(image_np, '{}'.format(apx_distance), (int(mid_x*800),int(mid_y*600)+20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,255), 2)
-           if apx_distance >= 0:
+'''
+
+           if apx_distance <= 0.5:
                ##move (int((boxes[0][i][1])*800)-position_x, int((boxes[0][i][0])*600)-position_y ) 
                click(int((move_x + bias_x)*0.4), int((move_y + bias_y)*0.4))
              ##  click(int((move_x + bias_x)*0.5), int((move_y + bias_y)*0.5))
                cv2.putText(image_np, 'HEADSHOT!!!1', (50,50), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0,0,255), 3)
             
-             
+ '''            
              
                
       cv2.imshow('window',image_np)
