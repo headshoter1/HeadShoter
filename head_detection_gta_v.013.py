@@ -127,6 +127,7 @@ with detection_graph.as_default():
           category_index,
           use_normalized_coordinates=True,
           line_thickness=4)
+      vehicle_dict = {}  
       for i,b in enumerate(boxes[0]):
         if classes[0][i] == 1:
          if scores[0][i] >= 0.7:
@@ -140,7 +141,8 @@ with detection_graph.as_default():
            pos_y1 = int((boxes[0][i][0])* 720)
            bias_x = int(((boxes[0][i][3])-(boxes[0][i][1]))*1280/2)
            bias_y = int(((boxes[0][i][2])-(boxes[0][i][0]))*720/15)
-           apx_distance = round(((1 - (boxes[0][i][3] - boxes[0][i][1]))**4),1)
+           vehicle_dict[apx_distance] = [mid_x, mid_y, scores[0][i]]
+           apx_distance = round(((1 - (boxes[0][i][3] - boxes[0][i][1]))**4), 3)
            ##cv2.putText(image_np, '{}'.format(apx_distance), (int(mid_x*800),int(mid_y*600)+20), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,255), 2)
 '''
 
@@ -152,7 +154,10 @@ with detection_graph.as_default():
             
  '''            
              
-               
+      if len(vehicle_dict) > 0:
+          closest = sorted(vehicle_dict.keys())[0]
+          vehicle_choice = vehicle_dict[closest]
+          determine_movement(mid_x = vehicle_choice[0], mid_y = vehicle_choice[1])         
       cv2.imshow('window',image_np)
       if cv2.waitKey(25) & 0xFF == ord('q'):
           cv2.destroyAllWindows()
